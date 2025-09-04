@@ -1,0 +1,154 @@
+/* Container */
+.container {
+  min-height: 100vh;
+  background: #f5f6fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Title */
+.title {
+  text-align: center;
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form */
+.form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.form input[type="text"],
+.form input[type="file"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.form button {
+  padding: 10px 20px;
+  background: #4a69bd;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.form button:hover {
+  background: #3c5aa6;
+}
+
+.form button:disabled {
+  background: #a4b0be;
+  cursor: not-allowed;
+}
+
+/* Results */
+.results {
+  margin-top: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #2f3640;
+}
+
+/* Extracted text */
+.text-box {
+  background: #f1f2f6;
+  border-radius: 6px;
+  padding: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Match score */
+.score {
+  font-size: 22px;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+/* Suggestions */
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  font-size: 15px;
+  color: #333;
+}
+
+ul li {
+  margin: 4px 0;
+}
+/* Better text formatting */
+.text-box pre {
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Score bar */
+.score-bar {
+  background: #ecf0f1;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 28px;
+  margin-top: 8px;
+}
+
+.score-fill {
+  background: linear-gradient(90deg, #27ae60, #2ecc71);
+  height: 100%;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.4s ease;
+}
+
+/* Suggested roles badges */
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.role-badge {
+  background: #dfe6e9;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #2d3436;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
