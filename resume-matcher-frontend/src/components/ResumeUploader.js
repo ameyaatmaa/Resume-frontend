@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ResumeUploader.css";
 
 const ResumeUploader = () => {
@@ -7,11 +7,17 @@ const ResumeUploader = () => {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    const randomId = "user-" + Math.random().toString(36).substring(2, 10);
+    setUserId(randomId);
+  }, []);
+
+  useEffect(() => {
+    if (file) handleUpload();
+  }, [file]);
+
   const handleUpload = async () => {
-    if (!file || !userId) {
-      alert("Please enter User ID and select a file.");
-      return;
-    }
+    if (!file || !userId) return;
 
     const formData = new FormData();
     formData.append("file", file);
@@ -37,64 +43,69 @@ const ResumeUploader = () => {
       <div className="card">
         <h1 className="title">Resume Matcher</h1>
 
-        {/* Upload form */}
         <div className="form">
-          <input
-            type="text"
-            placeholder="Enter User ID"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-          />
           <input
             type="file"
             accept=".pdf,.docx"
             onChange={(e) => setFile(e.target.files[0])}
           />
-          <button onClick={handleUpload} disabled={loading}>
-            {loading ? "Uploading..." : "Upload"}
-          </button>
+          {loading && <p>Uploading...</p>}
         </div>
 
-        
-       {/* Results */}
-{result && (
-  <div className="results">
-    <div className="section">
-      <h2>Extracted Text</h2>
-      <div className="text-box">
-        <pre>{result.extractedText || "No text extracted"}</pre>
-      </div>
-    </div>
+        {result && (
+          <div className="results">
+            {/* Sections */}
+            <div className="section">
+              <h2>Extracted Sections</h2>
+              {result.sections && Object.keys(result.sections).length > 0 ? (
+                Object.entries(result.sections).map(([section, content]) => (
+                  <div key={section} className="text-box-section">
+                    <h3>{section}</h3>
+                    {content ? (
+                      content.split('.').map((sentence, index) => {
+                        const trimmed = sentence.trim();
+                        return trimmed ? <p key={index}>{trimmed}.</p> : null;
+                      })
+                    ) : (
+                      <p>No content</p>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>No sections extracted</p>
+              )}
+            </div>
 
-    <div className="section">
-      <h2>Match Score</h2>
-      <div className="score-bar">
-        <div
-          className="score-fill"
-          style={{ width: `${result.matchScore}%` }}
-        >
-          {result.matchScore}%
-        </div>
-      </div>
-    </div>
+            {/* Match Score */}
+            <div className="section">
+              <h2>Match Score</h2>
+              <div className="score-bar">
+                <div
+                  className="score-fill"
+                  style={{ width: `${result.matchScore}%` }}
+                >
+                  {result.matchScore}%
+                </div>
+              </div>
+            </div>
 
-    <div className="section">
-      <h2>Suggested Roles</h2>
-      <div className="roles">
-        {result.suggestions && result.suggestions.length > 0 ? (
-          result.suggestions.map((s, i) => (
-            <span className="role-badge" key={i}>
-              {s}
-            </span>
-          ))
-        ) : (
-          <p>No suggestions available</p>
+            {/* Suggested Roles */}
+            <div className="section">
+              <h2>Suggested Roles</h2>
+              <div className="roles">
+                {result.suggestions && result.suggestions.length > 0 ? (
+                  result.suggestions.map((s, i) => (
+                    <span className="role-badge" key={i}>
+                      {s}
+                    </span>
+                  ))
+                ) : (
+                  <p>No suggestions available</p>
+                )}
+              </div>
+            </div>
+          </div>
         )}
-      </div>
-    </div>
-  </div>
-)}
-
       </div>
     </div>
   );

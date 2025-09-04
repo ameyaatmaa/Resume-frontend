@@ -1,154 +1,184 @@
-/* Container */
+/* Global body */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #f0f0f0;
+}
+
+/* Animated Gradient Background */
 .container {
   min-height: 100vh;
-  background: #f5f6fa;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  background: linear-gradient(270deg, #1f1f2e, #121212, #1f1f2e);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+/* Background Animation */
+@keyframes gradientAnimation {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
 /* Card */
 .card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 30px;
+  background: #1e1e2f;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  padding: 40px;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
 }
 
 /* Title */
 .title {
   text-align: center;
-  font-size: 26px;
-  color: #333;
-  margin-bottom: 20px;
+  font-size: 32px;
+  color: #00f0ff;
+  margin-bottom: 30px;
+  text-shadow: 0 0 8px #00f0ff;
 }
 
 /* Form */
 .form {
   display: flex;
-  gap: 12px;
+  gap: 15px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.form input[type="text"],
 .form input[type="file"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 12px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #2b2b3c;
+  color: #f0f0f0;
+  cursor: pointer;
   flex: 1;
   min-width: 200px;
+  transition: 0.3s;
+}
+
+.form input[type="file"]:hover {
+  border-color: #00f0ff;
 }
 
 .form button {
-  padding: 10px 20px;
-  background: #4a69bd;
+  padding: 12px 25px;
+  background: #00f0ff;
   border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
+  border-radius: 8px;
+  color: #121212;
   font-weight: bold;
-  transition: 0.2s;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .form button:hover {
-  background: #3c5aa6;
+  background: #00c4cc;
 }
 
 .form button:disabled {
-  background: #a4b0be;
+  background: #555;
   cursor: not-allowed;
 }
 
-/* Results */
+/* Results Section */
 .results {
   margin-top: 20px;
 }
 
+/* Sections */
 .section {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .section h2 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: #2f3640;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #00f0ff;
+  text-shadow: 0 0 5px #00f0ff;
 }
 
-/* Extracted text */
-.text-box {
-  background: #f1f2f6;
-  border-radius: 6px;
-  padding: 12px;
+/* Individual extracted sections */
+.text-box-section {
+  background: #2b2b3c;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
   max-height: 200px;
   overflow-y: auto;
-  font-size: 14px;
-  line-height: 1.5;
+  transition: background 0.3s;
 }
 
-/* Match score */
-.score {
-  font-size: 22px;
-  font-weight: bold;
-  color: #27ae60;
+.text-box-section h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #f0f0f0;
 }
 
-/* Suggestions */
-ul {
-  list-style-type: disc;
-  margin-left: 20px;
-  font-size: 15px;
-  color: #333;
-}
-
-ul li {
-  margin: 4px 0;
-}
-/* Better text formatting */
-.text-box pre {
+.text-box-section pre {
   white-space: pre-wrap;
-  font-family: "Courier New", monospace;
+  font-family: 'Courier New', monospace;
   font-size: 14px;
+  color: #dcdcdc;
   line-height: 1.5;
 }
 
-/* Score bar */
+/* Match Score */
 .score-bar {
-  background: #ecf0f1;
-  border-radius: 8px;
+  background: #44475a;
+  border-radius: 12px;
   overflow: hidden;
-  height: 28px;
+  height: 30px;
   margin-top: 8px;
 }
 
 .score-fill {
-  background: linear-gradient(90deg, #27ae60, #2ecc71);
+  background: linear-gradient(90deg, #00f0ff, #00a3b5);
   height: 100%;
-  color: white;
+  color: #121212;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: width 0.4s ease;
+  transition: width 0.5s ease;
+  text-shadow: 0 0 3px #fff;
 }
 
-/* Suggested roles badges */
+/* Suggested Roles */
 .roles {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .role-badge {
-  background: #dfe6e9;
-  padding: 8px 14px;
-  border-radius: 20px;
+  background: #44475a;
+  padding: 8px 16px;
+  border-radius: 25px;
   font-size: 14px;
-  color: #2d3436;
+  color: #00f0ff;
   font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+
+.role-badge:hover {
+  background: #00f0ff;
+  color: #121212;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
